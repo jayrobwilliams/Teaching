@@ -1,0 +1,67 @@
+\documentclass[11pt]{letter}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
+\longindentation=0in % closing and signature on the left of page
+
+% dark blue URLs and emails
+\usepackage{hyperref,color}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+	linkcolor=darkblue,urlcolor=darkblue,
+	anchorcolor=darkblue,citecolor=darkblue}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS in teletype fixed-width font
+\providecommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+% logo in left header for letterhead
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyhead[L]{\includegraphics[width=.4\textwidth,left]{unc_logo.png}}
+}
+\pagestyle{plain}
+% no header line
+\renewcommand{\headrulewidth}{0pt}
+
+\makeatletter
+% assign plain page style to letter page types
+\let\ps@empty\ps@plain
+\let\ps@firstpage\ps@plain
+% reduce space above signature
+\renewcommand{\closing}[1]{\par\nobreak\vspace{\parskip}%
+	\stopbreaks
+	\noindent
+	\ifx\@empty\fromaddress\else
+	\hspace*{\longindentation}\fi
+	\parbox{\indentedwidth}{\raggedright
+		\ignorespaces #1\\[\medskipamount]%
+		\ifx\@empty\fromsig
+		\fromname
+		\else \fromsig \fi\strut}%
+	\par}
+\makeatother
+
+\usepackage{lipsum}
+
+% letter info
+\signature{\includegraphics[height=40pt]{signature.png} \\FIRSTNAME LASTNAME \\ TITLE}
+\address{FIRSTNAME LASTNAME \\ DEPARTMENT \\ ADDRESS ONE \\ ADDRESS TWO \\ \email{EMAIL@DOMAIN.TLD}}
+
+% letter
+\begin{document}
+	
+	\date{\today}
+	
+	\begin{letter}{ORGANIZATION TITLE \\ ADDRESS ONE \\ ADDRESS TWO}
+		
+		\opening{To Whom It May Concern:}
+		
+		\lipsum[1-2]
+		
+		\closing{Sincerely,}
+		
+	\end{letter}
+
+\end{document}
