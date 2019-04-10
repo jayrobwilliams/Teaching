@@ -4,8 +4,10 @@ This repository contains templates and scripts that I've found useful for teachi
 
 # Contents
 
-- `PDFconv.sh`: This script converts a directory of Word documents to PDFs. It is
-designed for a directory where each assignment is in a subdirectory, as it will
-create a file in each directory called `wc.txt` with the document's word count.
-- `Reference Letter.tex`: A template reference letter that include a university
+- `PDFconv.sh`: This script converts a directory of Word documents to PDFs. It
+will create a text file for each Word document called `<doctitle>-wc.txt` with the
+document's word count. It also works recursively if Word documents are located
+in multiple subdirectories. It depends on [pandoc](https://pandoc.org/) for
+conversion from `.docx` to `.pdf`.
+- `Reference Letter.tex`: A template reference letter that includes a university
 logo to create a letterhead effect.
